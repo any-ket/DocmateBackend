@@ -15,10 +15,9 @@ function Signup(reqData){
     const hash = await bcrypt.hash(password, 10);
     const values = [{name, email, mob, hash}];
     const resp = await dbCli.insert("users", values);
-    resolve(resp);
+    resolve({statusCode: StatusCodes.OK, responseData: resp});
   });
 }
-
 
 function Login(reqData){
   return new Promise((resolve, reject) => {
