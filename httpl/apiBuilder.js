@@ -32,7 +32,9 @@ const apiRequestHandler = async (
 const CreateAPI = (router, apiEndpoints) => {
   apiEndpoints.forEach((apiEndpoint) => {
     router.use(bodyParser.json());
-    router[apiEndpoint.method](apiEndpoint.endpoint, async (req, res) => {
+    // router.use(bodyParser.urlencoded({extended}));
+    router.post
+    router[apiEndpoint.method](apiEndpoint.endpoint, apiEndpoint.middleware? apiEndpoint.middleware : (req, res, next) => {next()} , async (req, res) => {
       apiRequestHandler(
         apiEndpoint.shouldItBeAuthorized,
         apiEndpoint.blFunction,

@@ -12,6 +12,8 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+app.use("/static", express.static('uploads'))
+
 app.use(require("./httpl"));
 
 InitialiseMongoClient().then(() => {
